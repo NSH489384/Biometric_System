@@ -3,7 +3,7 @@ Este repositorio contiene toda la informacion de documento e informacion desarro
 
 ## Documentos:
 * Primer trimestre contiene :los primeros tres documentos base de casos de uso , casos de uso extendido , historias de usuario, presentacion general, archivo project,MER,Diccionario BD, diagrama de clases ,UML.
-* tercer trimestre contiene : 1er sublime BS , tablas y relaciones BS, diagrama de clases UML, presustentacion y presentacion general.
+* tercer trimestre contiene : 1er script de Base de Datos con tablas y relaciones BS, diagrama de clases UML, presustentacion y presentacion general.
 * cuarto trimestre contiene : diccionario Bd, diagrama de clases , presustentacion y presentacion general.
 * sexto trimeste continene : manual de operacciones , manual tecnico .
 * septimo trimestre contiene : presentacion general , planos sketsup, planos documento ,plan de migracion , normas ISO IEC 9126 , manual tecnico , manual de operaciones, manual de usuario informa backups BS ,Informe De Distribución Física Hardware Y Software , formato NI, cuadro de proveedores , contrato , casos de prueba .
