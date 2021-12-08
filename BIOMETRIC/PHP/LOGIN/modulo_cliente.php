@@ -1,7 +1,14 @@
-
 <?php
-$uusername=$_SESSION["NUMERO_DOC"];
-$us_correo=$_SESSION["CORREO_USUARIO"];
+session_start();
+
+$active_session_cliente=$_SESSION["cliente"];
+
+if ($active_session_cliente!='1') 
+{
+	header('location: login.php');
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +32,7 @@ $us_correo=$_SESSION["CORREO_USUARIO"];
             <STRONG><?php echo $_SESSION["NUMERO_DOC"];?></STRONG>
             <STRONG><?php echo "correo" , $_SESSION["CORREO_USUARIO"];?></STRONG>
             <div>
-            	<button class="btn btn-success ml-2" type="submit">CIERRE SESSION</button>
+            	<a href="salircliente.php" class="btn btn-success ml-2">CIERRE SESSION</a>
             </div>
         </nav>
     </div>

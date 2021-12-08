@@ -1,36 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-	<title>recuperacion de password</title>
+    <link rel="stylesheet" href="../assets/css/style_form.css">
+
+    <title>Inicio login</title>
 </head>
 <body>
-	<?php
-	require_once '../conexion.php';
-	$db = conexion::conectar();
-	?>
+    <header class="mt-0 pt-0">
+        <div class="bg-cover clearfix pt-3">
+            <h2 class="logo">BIOMETRIC-SYSTEM</h2>
+            <nav class="nav nav-fill mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/fh5co" target="_blank"><i
+                            class="fab fa-twitter"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fab fa-google-plus-g"></i></a>
+                </li>
+            </nav>
+            <input type="text" id="nav-search" class="nav-search mx-auto" name="" class="form-control">
+            <div class="ml-0 mr-0 pb-1">
+                <nav class="navbar navbar-expand-md">
+
+                    <button class="navbar-toggler ml-auto" data-target="#my-nav" data-toggle="collapse"
+                        aria-controls="my-nav" aria-expanded="false" onclick="myFunction(this)"
+                        aria-label="Toggle navigation">
+                        <span class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span>
+                    </button>
+                    <div id="my-nav" class="collapse navbar-collapse">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="article.html">NUEVO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="article.html">HISTORIA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">CULTURA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">CONTACTANOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">OPINION</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="" method="POST">
+                                    <div class="input-group mt-0 mx-auto" style="width:16px;">
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+<div><br><br><br>
+
+  <?php
+    require_once '../conexion.php';
+    $db = conexion::conectar();
+    ?>
 <footer class="container-fluid pt-5">
-	<form method="post" action="recuperar.php">
-		<h1>Recuperacion password </h1>
-		<select name="tdoc">
-		<?php
-		foreach ($db->query("SELECT ID_TIPO_DOC, DES_TD, ESTADO_TD FROM tipo_documento WHERE ESTADO_TD=1") as $row)
-		{
-			echo '<option value="' , $row["ID_TIPO_DOC"] , '">' , $row["DES_TD"] , '</option>';
-		}
-		?>
-	    </select>
-		
+    <h1 style="color: white">Recuperacion de Contraseña </h1>
+    <form class="form" method="post" action="recuperar.php">
+        <select name="tdoc">
+            <option value="CC">cedula ciudadania</option> 
+            <option value="TI" >Tarjeta de identidad</option>
+            <option value="CE">Cedula de extrangeria</option>
+            <option value="PA">Pasaporte</option>
+        </select><br>
+        </select><br>
+        <input type="number" placeholder="Ingrese su numero de documento" name="user" required>
+        <input type="email" placeholder="ingrese su email" name="email">
+        <input class="submit" type="submit" name="">
 
-	</form>
+    </form><br><br><br><br>
+</footer>
 
+    <footer class="container-fluid pt-5">
         <div class="container">
-        	   <br><br><br><br><br> <br><br><br><br>
-            <h2 class="logo text-center">BIOMETRIC-SYSTEM</h2>
             <nav class="nav nav-fill mx-auto mt-5">
                 <li class="nav-item">
                     <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
@@ -50,14 +112,20 @@
                     <a class="nav-link" href="#"><i class="fas fa-rss"></i></a>
                 </li>
             </nav>
-
         </div>
-
         <div class="copyright mt-4">
             <p class="text-center">&copy; 2020 <a href="#" class="text-white">BIOMETRIC-SYSTEM</a>. Todos los derechos reservados. Diseñado
-                por <a href="https://freehtml5.co/shahala" target="_blank" class="text-white">biometric-system.co</a>.</p>
+                by <a href="https://freehtml5.co/shahala" target="_blank" class="text-white">biometric-system.co</a>.</p>
         </div>
+    </footer>
 
-</footer>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/jquery-1.12.0.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.yu2fvl.js"></script>
+    <script src="assets/js/main.js"></script>
+
 </body>
+
 </html>

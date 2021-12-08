@@ -1,5 +1,13 @@
+<?php
+session_start();
 
+$active_session_admin=$_SESSION["admin"];
 
+if ($active_session_admin!='1') 
+{
+	header('location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +17,7 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-	<title>modulo_cliente</title>
+	<title>Modulo Administrador</title>
 </head>
 <body>
 	<div class="container-fluid pt-3">
@@ -20,7 +28,9 @@
             </a>
             <span class="glyphicon glyphicon-align-left"></span>
             <div>
-            	<button class="btn btn-success ml-2" type="submit">CIERRE SESSION</button>
+                <STRONG><?php echo $_SESSION["NUMERO_DOC"];?></STRONG>
+                <STRONG><?php echo "correo" , $_SESSION["CORREO_USUARIO"];?></STRONG>
+            	<a href="saliradmin.php" class="btn btn-success ml-2">CIERRE SESSION</a>
             </div>
         </nav>
     </div>
