@@ -1,0 +1,48 @@
+<?php 
+	class Ciudad   
+	{
+		private $pdo;
+		
+		public function __CONSTRUCT()
+		{
+			try{
+				$this->pdo = conexion::conectar();
+			}
+			catch(Exception $ex){
+				die($e->getMessage());
+			}
+		}
+
+		public function Ingresar_ciudad($id_ciu, $nom_ciu, $estado)
+		{
+	
+				$sql = "CALL pa_nuevo_ciudad('$id_ciu', '$nom_ciu', '$estado');";
+
+			$this->pdo->query($sql);
+
+			print "<script>alert(\"Ciudad agregada exitosamente. \");window.location='formu_ciudad.php';</script>";
+		}
+
+		public function Actualizar_ciudad($old_idd, $new_idd, $nnom_ciu, $eestado)
+		{ 
+
+			$sql = "UPDATE ciudad SET ID_CIUDAD = '$new_idd', DES_CIUDAD = '$nnom_ciu', ESTADO_CIUDAD = '$eestado'
+						WHERE ID_CIUDAD = '$old_idd';";
+
+			$this->pdo->query($sql);
+
+			print "<script>alert(\"Ciudad Actualizada exitosamente. \");window.location='formu_ciudad.php';</script>";
+		}
+
+		public function Eliminar_ciudad($id_ciu)
+		{
+
+			$sql = "DELETE FROM ciudad WHERE ID_CIUDAD = '$id_ciu'";
+
+			$this->pdo->query($sql);
+
+			print "<script>alert(\"Ciudad Eliminada exitosamente. \");window.location='formu_ciudad.php';</script>";
+		}
+		
+	}
+?>
