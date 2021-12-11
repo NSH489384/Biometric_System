@@ -37,7 +37,7 @@ if ($active_session_admin!='1')
         </nav>
     </div>
         <div class="container">
-        	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro persona</h4></a><br><br>
+        	<p><a class="btn btn-warning" href="../formularios/form_pers.php" target="mainframe"><h4>Registro persona</h4></a></p><br><br>
         	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro cliente</h4></a><br><br>
         	<a class="btn btn-primary btn-xs" href="../formularios/form_ciudad.php"><h4>Registro usuario</h4></a><br><br>
         	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro vehiculo</h4></a><br><br>

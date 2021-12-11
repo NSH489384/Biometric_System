@@ -121,7 +121,7 @@ if(isset($_REQUEST['action']))
 <div class="container-fluid pt-5">
     <h1 style="color: white">Registro ciudad </h1>
                 <form class="form" method="post" action="#">
-                   <input type="number" name="id_ciu" style="display: none">
+                   <input type="number" name="id_ciu" placeholder="Ingrese numero de id">
         	   	   <input type="text" name="nom_ciud" placeholder="ciudad">
         	   	   <label>Estado: </label>
                    Active <input type="radio" name="estado" value="1" checked>
@@ -203,7 +203,7 @@ if($query->rowCount()>0):?>
                     <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"> 
                     <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
                             class="fab fa-twitter"></i></a>
                 </li>

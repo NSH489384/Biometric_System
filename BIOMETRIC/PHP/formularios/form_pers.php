@@ -1,9 +1,9 @@
-<?php 
+<?php
 require_once '../crud_bio/model_pers.php';
 require_once '../conexion.php';
     $db = conexion::conectar();
     ?>
-<?php 
+<?php
 // INICIO DE VALIDACION Y SELECCION DE CASOS A REALIZAR INSERT - UPDATE - DELETE - SELECT
 if(isset($_REQUEST['action']))
 { 	switch ($_REQUEST['action']) 

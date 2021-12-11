@@ -1,5 +1,5 @@
 <?php
-require_once '../crud_bio/model_eps.php';
+require_once '../crud_bio/model_ciudad.php';
 require_once '../conexion.php';
     $db = conexion::conectar();
     ?>
@@ -11,28 +11,28 @@ if(isset($_REQUEST['action']))
 
 // CASO PARA METODO ACTUALIZAR
         case 'actualizar':
-        $update=new Eps();
-        $update->Actualizar_eps($_POST["old_idd"], $_POST["new_idd"], $_POST["nnom_eps"],$_POST["eestado"]);
+        $update=new Ciudad();
+        $update->Actualizar_ciudad($_POST["old_idd"], $_POST["new_idd"], $_POST["nnom_ciu"],$_POST["eestado"]);
 
             break;
 
 // CASO PARA METODO REGISTRAR       
         case 'registrar':
-        $insert=new Eps();
-        $insert->Ingresar_eps($_POST["id_eps"],$_POST["nom_eps"], $_POST["estado"]);
+        $insert=new Ciudad();
+        $insert->Ingresar_ciudad($_POST["id_ciu"],$_POST["nom_ciud"], $_POST["estado"]);
 
          break;
 
 // CASO PARA METODO ELIMINAR
          case 'eliminar':
-        $delete=new Eps();
-        $delete->Eliminar_eps($_GET["ID_EPS"]);
+        $delete=new Ciudad();
+        $delete->Eliminar_ciudad($_GET["ID_CIUDAD"]);
 
            break;
 
 // CASO PARA METODO EDITAR
          case'editar':
-        $capt = $_GET["ID_EPS"];
+        $capt = $_GET["ID_CIUDAD"];
          break;
      }
 }
@@ -49,7 +49,7 @@ if(isset($_REQUEST['action']))
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style_forms.css">
 
-    <title>Registro Eps</title>
+    <title>Registro Ciudad</title>
 </head>
 <body>
     <header class="mt-0 pt-0">
@@ -111,81 +111,81 @@ if(isset($_REQUEST['action']))
         </div>
 <div><br><br><br>
 
-<a href="?action=ver&m=1">Registro Eps</a><br><br>
+<a href="?action=ver&m=1">Registro ciudad</a><br><br>
 
 <!-- Validacion para mostrar formulario de nuevo registro -->
-	<?php if( !empty($_GET['m']) and !empty($_GET['action'])  )
+    <?php if( !empty($_GET['m']) and !empty($_GET['action'])  )
 
 {?>
 
 <div class="container-fluid pt-5">
-    <h1 style="color: white">Registro eps </h1>
+    <h1 style="color: white">Registro ciudad </h1>
                 <form class="form" method="post" action="#">
-                   <input type="number" name="id_eps" placeholder="Ingrese numero de id" style="display: none">
-        	   	   <input type="text" name="nom_eps" placeholder="eps">
-        	   	   <label>Estado: </label>
+                   <input type="number" name="id_ciu" placeholder="Ingrese numero de id">
+                   <input type="text" name="nom_ciud" placeholder="ciudad">
+                   <label>Estado: </label>
                    Active <input type="radio" name="estado" value="1" checked>
                    Inactive <input type="radio" name="estado" value="0">
-        	   	   <input type="submit" value="Registrar" onclick="this.form.action = '?action=registrar';"/>
-        	   		
-        	   		
-        	   	</form>
+                   <input type="submit" value="Registrar" onclick="this.form.action = '?action=registrar';"/>
+                    
+                    
+                </form>
 </div>
 <?php } ?> <!-- FIN - Formulario nuevo registro -->
 
 
 <!-- Validacion para mostrar formulario de Actualizar registro -->
-<?php if( !empty($_GET['ID_EPS']) && !empty($_GET['action']) ){ ?>
+<?php if( !empty($_GET['ID_CIUDAD']) && !empty($_GET['action']) ){ ?>
 
-<div>	
+<div>   
 <form class="form" action="#" method="post">
 
-<?php $sql1= "SELECT * FROM `eps`
-				WHERE ID_EPS = '$capt'";
+<?php $sql1= "SELECT * FROM `ciudad`
+                WHERE ID_CIUDAD = '$capt'";
 $query = $db->query($sql1);?>
 <?php  while ($row=$query->fetch(PDO::FETCH_ASSOC))
 {
     ?>
-		<h2>ACTUALIZAR DATOS</h2>
-			<input type="text" name="old_idd" value="<?php echo $row["ID_EPS"]; ?>" style='display: none'>
-			<input type="text" name="new_idd" value="<?php echo $row["ID_EPS"]; ?>" placeholder="Numero de ID" required>
-			<input type="text" name="nnom_eps" value="<?php echo $row["DES_EPS"]; ?>" placeholder="Eps">
+        <h2>ACTUALIZAR DATOS</h2>
+            <input type="text" name="old_idd" value="<?php echo $row["ID_CIUDAD"]; ?>" style='display: none'>
+            <input type="text" name="new_idd" value="<?php echo $row["ID_CIUDAD"]; ?>" placeholder="Numero de ID" required>
+            <input type="text" name="nnom_ciu" value="<?php echo $row["DES_CIUDAD"]; ?>" placeholder="Ciudad">
             <label>Estado: </label>
-              Active<input type="radio" name="estado" value="1"<?php echo $row['ESTADO_EPS'] === '1' ? 'checked' : ''?>  >
-              Inactive<input type="radio" name="estado" value="0"<?php echo $row['ESTADO_EPS'] === '0' ? 'checked' : ''?>  >
-			<p><input class="submit-button" type="submit" value= "Actualizar" onclick= "this.form.action = '?action=actualizar';"/>
+              Active<input type="radio" name="estado" value="1"<?php echo $row['ESTADO_CIUDAD'] === '1' ? 'checked' : ''?>  >
+              Inactive<input type="radio" name="estado" value="0"<?php echo $row['ESTADO_CIUDAD'] === '0' ? 'checked' : ''?>  >
+            <p><input class="submit-button" type="submit" value= "Actualizar" onclick= "this.form.action = '?action=actualizar';"/>
 
 
 </form>
 </div>
 <?php  }} // Fin Validacion para mostrar formulario de Actualizar registro
-$sql1= "SELECT * FROM eps";
+$sql1= "SELECT * FROM ciudad";
 $query = $db->query($sql1);
 
 if($query->rowCount()>0):?>
-<br><h1 style="color: white">Consulta de Eps</h1><br>
+<br><h1 style="color: white">Consulta de Ciudades</h1><br>
 <table class="blueTable">
-	<thead>
-		<tr>
-			<th class="th">Id Eps</th>
-			<th>Eps</th>
-			<th>Estado</th>
+    <thead>
+        <tr>
+            <th class="th">Id ciudad</th>
+            <th>Ciudad</th>
+            <th>Estado</th>
             <th>Actualizar</th>
             <th>Eliminar</th>
-		</tr>
-	</thead>
+        </tr>
+    </thead>
 
 
 <?php while ($row=$query->fetch(PDO::FETCH_ASSOC)): ?>
 <tr class="tr">
-	<td class="td"><?php echo $row['ID_EPS']; ?></td>
-	<td class="td"><?php echo $row['DES_EPS']; ?></td>
-	<td class="td"><?php echo $row['ESTADO_EPS']; ?></td>
+    <td class="td"><?php echo $row['ID_CIUDAD']; ?></td>
+    <td class="td"><?php echo $row['DES_CIUDAD']; ?></td>
+    <td class="td"><?php echo $row['ESTADO_CIUDAD']; ?></td>
 <td class="td">
-	<a href="?action=editar&ID_EPS=<?php echo $row["ID_EPS"];?>">Actualizar</a>
+    <a href="?action=editar&ID_CIUDAD=<?php echo $row["ID_CIUDAD"];?>">Actualizar</a>
 </td> 
-	<td class="td"> 
-	 <a href="?action=eliminar&ID_EPS=<?php echo $row["ID_EPS"];?>" onclick="return confirm('¿Esta seguro de eliminar esta Eps?')">Eliminar</a>
+    <td class="td"> 
+     <a href="?action=eliminar&ID_CIUDAD=<?php echo $row["ID_CIUDAD"];?>" onclick="return confirm('¿Esta seguro de eliminar esta Ciudad?')">Eliminar</a>
 </td>
 
 </tr>
@@ -194,7 +194,7 @@ if($query->rowCount()>0):?>
 </table>
 
 <?php else:?>
-	<h4 class="alert alert-danger">Señor usuario no hay registros encontrados</h4>
+    <h4 class="alert alert-danger">Señor usuario no hay registros encontrados</h4>
 <?php endif;?>
     <footer class="container-fluid pt-5">
         <div class="container">

@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Recuperar Contraseña</title>
@@ -39,7 +39,7 @@ class recu_pass
 	$mail=mail($email,$asunto,$mensaje,$header);
 	if ($mail) {
 		print"<script>alert(\"email enviado exitosamente!.\");window.location='index.php';</script>";
-	}
+}
 		}
 	}
 }

@@ -12,12 +12,10 @@
 				die($e->getMessage());
 			}
 		}
-
 		public function Ingresar_ciudad($id_ciu, $nom_ciu, $estado)
 		{
 	
-				$sql = "INSERT INTO ciudad(ID_CIUDAD,DES_CIUDAD,ESTADO_CIUDAD)
-                VALUES('$id_ciu','$nom_ciu','$estado');";
+				$sql = "CALL pa_nuevo_ciudad('$id_ciu', '$nom_ciu', '$estado');";
 
 			$this->pdo->query($sql);
 
