@@ -17,7 +17,7 @@ if ($active_session_admin!='1')
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-	<title>Modulo Administrador</title>
+	<title>modulo_admin</title>
 </head>
 <body>
 	<div class="container-fluid pt-3">
@@ -26,10 +26,11 @@ if ($active_session_admin!='1')
             <img src="../assets/images/logo12.jpg" width="50" height="50" class="d-inline-block align-top" alt="">   
             𝑩𝒊𝒐𝒎𝒆𝒕𝒓𝒊𝒄-𝒔𝒚𝒔𝒕𝒆𝒎~𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐 𝒂𝒅𝒎𝒊𝒏𝒊𝒔𝒕𝒓𝒂𝒅𝒐𝒓
             </a>
+            <H1><?php echo $_SESSION["DESC_ROL"];?></H1>
+            <H1><?php echo $_SESSION["NUMERO_DOC"];?></H1>
+
             <span class="glyphicon glyphicon-align-left"></span>
             <div>
-                <STRONG><?php echo $_SESSION["NUMERO_DOC"];?></STRONG>
-                <STRONG><?php echo "correo" , $_SESSION["CORREO_USUARIO"];?></STRONG>
             	<a href="saliradmin.php" class="btn btn-success ml-2">CIERRE SESSION</a>
             </div>
         </nav>

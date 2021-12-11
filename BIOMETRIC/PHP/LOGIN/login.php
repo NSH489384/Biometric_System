@@ -80,7 +80,7 @@
             <option value="CE">Cedula de extrangeria</option>
             <option value="PA">Pasaporte</option>
         </select><br>		
-        <label >Numero Documento</label>
+        <label >NUMERO DOCUMENTO</label>
 		<input type="number" placeholder="Ingrese su numero de documento" name="user" required>
 		<label >Contraseña</label><br>
 		<input type="password" placeholder="Ingrese su Contraseña" name="pass" required><br>
