@@ -1,6 +1,6 @@
 <?php  
-	class Cliente
-	{
+	class Cliente 
+	{ 
 		private $pdo;
 		
 		public function __CONSTRUCT()
@@ -12,21 +12,20 @@
 				die($e->getMessage());
 			}
 		}
-
 		public function Ingresar_cliente($id_cl, $td_cl, $direccion_cl,$estado_cl,$contacto_cl,$td_contacto_cl,$ciudad_cl,$eps_cl)
 		{
-	
-				$sql = "CALL pa_nuevo_cliente($id_cl, $td_cl, $direccion_cl,$estado_cl,$contacto_cl,$td_contacto_cl,$ciudad_cl,$eps_cl);";
+			$sql = "INSERT INTO cliente (ID_CLIENTE, TD_CLIENTE, DIRECCION, ESTADO_CLIENTE,NUMERO_DOC_CONTACTO_E,TD_CONTACTO_E, FK_CIUDAD, FK_EPS)
+			VALUES ('$id_cl', '$td_cl', '$direccion_cl', '$estado_cl', '$contacto_cl' , '$td_contacto_cl', '$ciudad_cl', '$eps_cl');";
 
 			$this->pdo->query($sql);
 
 			print "<script>alert(\"Cliente agregado exitosamente. \");window.location='formu_cliente.php';</script>";
 		}
 
-		public function Actualizar_cliente($old_cl, $new_cl, $td_cl, $direccion_cl, $estado_cl, $contacto_cl, $td_contacto_cl, $ciudad_cl, $eps_cl)
+		public function Actualizar_cliente($old_cl, $new_cl,$td_cl, $direccion_cl, $estado_cl, $contacto_cl, $td_contacto_cl, $ciudad_cl, $eps_cl)
 		{
 
-			$sql = "UPDATE  SET ID_CLIENTE = '$new_cl', TD_CLIENTE = '$td_cl', DIRECCION = '$direccion_cl', ESTADO_CLIENTE = '$estado_cl', NUMERO_DOC_CONTACTO_E = '$contacto_cl', TD_CONTACTO_E = '$td_contacto_cl', FK_CIUDAD = '$ciudad_cl', FK_EPS = '$ eps_cl'
+			$sql = "UPDATE cliente SET ID_CLIENTE = '$new_cl', TD_CLIENTE = '$td_cl', DIRECCION = '$direccion_cl', ESTADO_CLIENTE = '$estado_cl', NUMERO_DOC_CONTACTO_E = '$contacto_cl', TD_CONTACTO_E = '$td_contacto_cl', FK_CIUDAD = '$ciudad_cl', FK_EPS = '$ eps_cl'
 				WHERE ID_CLIENTE = '$old_cl';";
 
 			$this->pdo->query($sql);
@@ -46,3 +45,4 @@
 		
 	}
 ?>
+

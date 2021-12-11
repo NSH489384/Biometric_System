@@ -1,5 +1,5 @@
 <?php 
-	class Persona
+	class Persona 
 	{
 		private $pdo;
 		
@@ -10,35 +10,33 @@
 			}
 			catch(Exception $ex){
 				die($e->getMessage());
-			}
+			} 
 		}
 
-		public function Nueva_persona($tdoc, $user, $nombre, $nombree, $apel, $apell, $tel)
+		public function Nueva_persona($user, $tdoc, $nombre, $nombree, $apel, $apell, $tel)
 		{
 	
-				$sql = "INSERT INTO persona(TD_PERSONA,ID_PERSONA,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SEGUNDO_APELLIDO,TELEFONO)
-                VALUES('$tdoc','$user','$nombre','$nombree','$apel','$apell','$tel');";
+				$sql = "CALL pa_insert_persona('$user','$tdoc','$nombre', '$nombree', '$apel', '$apell', '$tel')";
 
 			$this->pdo->query($sql);
 
 			print "<script>alert(\"Registro agregado exitosamente. \");window.location='formu_pers.php';</script>";
 		}
 
-		public function Actualizar_persona($old_user, $tdoc, $new_user, $nombre, $nombree, $apel, $apell, $tel)
+		public function Actualizar_persona($old_user, $tdoc, $nombre, $nombree, $apel, $apell, $tel)
 		{
 
-			$sql = "UPDATE persona SET ID_PERSONA = '$new_user', TD_PERSONA = '$tdoc', PRIMER_NOMBRE ='$nombre', SEGUNDO_NOMBRE = 'nombree', PRIMER_APELLIDO = 'apel', SEGUNDO_APELLIDO = 'apell', TELEFONO = '$tel'
-				WHERE ID_PERSONA = '$old_user';";
+			$sql = "CALL pa_actualizar_persona('$old_user', '$tdoc', '$nombre', '$nombree', '$apel', '$apell', '$tel')";
 
 			$this->pdo->query($sql);
 
 			print "<script>alert(\"Registro Actualizado exitosamente. \");window.location='formu_pers.php';</script>";
 		}
 
-		public function Eliminar_persona($userr)
+		public function Eliminar_persona($persona)
 		{
 
-			$sql = "DELETE FROM persona WHERE ID_PERSONA = '$userr'";
+			$sql = "DELETE FROM persona WHERE ID_PERSONA = '$persona'";
 
 			$this->pdo->query($sql);
 

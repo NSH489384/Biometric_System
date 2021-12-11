@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../crud_bio/model_pers.php';
 require_once '../conexion.php';
     $db = conexion::conectar();
@@ -6,20 +6,20 @@ require_once '../conexion.php';
 <?php
 // INICIO DE VALIDACION Y SELECCION DE CASOS A REALIZAR INSERT - UPDATE - DELETE - SELECT
 if(isset($_REQUEST['action']))
-{ 	switch ($_REQUEST['action']) 
+{ 	switch ($_REQUEST['action'])  
 	{ 	
 
 // CASO PARA METODO ACTUALIZAR
 		case 'actualizar':
 		$update=new Persona();
-        $update->Actualizar_persona($_POST["old_user"], $_POST["new_user"] ,$_POST["ttdoc"], $_POST["nnombre"], $_POST["nnombree"], $_POST["aapel"], $_POST["aapell"], $_POST["ttel"]);
+        $update->Actualizar_persona($_POST["old_user"], $_POST["tdoc"], $_POST["nnombre"], $_POST["nnombree"], $_POST["aapel"], $_POST["aapell"], $_POST["ttel"]);
 
             break;
 
 // CASO PARA METODO REGISTRAR		
 		case 'registrar':
 		$insert=new Persona();
-        $insert->Nueva_persona($_POST["ttdoc"],$_POST["uuser"], $_POST["nnombre"], $_POST["nnombree"], $_POST["aapel"], $_POST["aapell"], $_POST["ttel"]);
+        $insert->Nueva_persona ($_POST["uuser"], $_POST["ttdoc"], $_POST["nnombre"], $_POST["nnombree"], $_POST["aapel"], $_POST["aapell"], $_POST["ttel"]);
 
          break;
 
@@ -60,25 +60,29 @@ if(isset($_REQUEST['action']))
 					<a href="../LOGIN/modulo_admin.php"><span class="las la-igloo"></span><span>Inicio</span></a>
 				</li>
 				<li>
-					<a href="formu_Persona.php" class="active"><span class="las la-user"></span><span>Registro Persona</span></a>
+					<a href="formu_Pers.php" class="active"><span class="las la-user"></span><span>Registro Persona</span></a>
 				</li>
 				<li>
-					<a href="formu_Usuario.php"><span class="las la-car"></span><span>Registro Usuario</span></a>
+					<a href="formu_Usuario.php"><span class="las la-book"></span><span>Registro Usuario</span></a>
 				</li>
 				<li>
-					<a href="formu_cliente.php"><span class="las la-igloo"></span><span>Registro Cliente</span></a>
+					<a href="formu_cliente.php"><span class="las la-chart-line"></span><span>Registro Cliente</span></a>
 				</li>
 				<li>
-					<a href="formu_ciudad.php"><span class="las la-igloo"></span><span>Registro Ciudad</span></a>
+					<a href="formu_ciudad.php"><span class="las la-map"></span><span>Registro Ciudad</span></a>
 				</li>
 				<li>
-					<a href="formu_Vehiculo.php"><span class="las la-igloo"></span><span>registro Vehiculo</span></a>
+					<a href="formu_Vehiculo.php"><span class="las la-car"></span><span>Registro Vehiculo</span></a>
+				</li>
+				
+				<li>
+					<a href="formu_modelo_veh.php"><span class="las la-car"></span><span>Registro Modelo de Vehiculo</span></a>
 				</li>
 				<li>
-					<a href="formu_modelo_veh.php"><span class="las la-car"></span><span>registro modelo de vehiculo</span></a>
+					<a href="formu_eps.php"><span class="las la-hospital"></span><span>Registro EPS</span></a>
 				</li>
-				<li>
-					<a href="formu_EPS.php"><span class="las la-igloo"></span><span>registro EPS</span></a>
+					<li>
+					<a href="formu_contacto_e.php" ><span class="las la-hospital"></span><span>Registro Contacto Emergencia</span></a>
 				</li>
 			</ul>
 
@@ -105,9 +109,9 @@ if(isset($_REQUEST['action']))
 				</div>
 			</div>
 		</header>
-		<main>
-			<div class="cards">
-				<div class="card-single">
+		<main class="fondo_formu">
+			<div>
+				<div>
 					<h1>REGRISTO PERSONA</h1>
 				</div>
 			</div>
@@ -132,14 +136,13 @@ if(isset($_REQUEST['action']))
                     }
                    ?>
                    </select><br>
-                   <input type="number" name="uuser" placeholder="Ingrese numero de cedula">
-        	   	   <input type="text" name="nnombre" placeholder="Primer nombre">
-        	   	   <input type="text" name="nnombree" placeholder="Segungo nombre">
-        	   	   <input type="text" name="aapel" placeholder="Primer apellido">
-        	   	   <input type="text" name="aapell" placeholder="Segungo apellido">
-        	   	   <input type="number" name="ttel" placeholder="ingrese numero de telefono">
+                   <input type="number" name="uuser" placeholder="Ingrese numero de cedula"style="text-transform:uppercase">
+        	   	   <input type="text" name="nnombre" placeholder="Primer nombre" style="text-transform:uppercase">
+        	   	   <input type="text" name="nnombree" placeholder="Segungo nombre"style="text-transform:uppercase">
+        	   	   <input type="text" name="aapel" placeholder="Primer apellido"style="text-transform:uppercase">
+        	   	   <input type="text" name="aapell" placeholder="Segungo apellido"style="text-transform:uppercase">
+        	   	   <input type="number" name="ttel" placeholder="ingrese numero de telefono"style="text-transform:uppercase">
         	   	   <input type="submit" value="Registrar" onclick="this.form.action = '?action=registrar';"/>
-        	   	   <a class="a" href="../crud_bio/consul_pers.php">Consultar registros</a>
         	   		
         	   		
         	   	</form>
@@ -151,26 +154,17 @@ if(isset($_REQUEST['action']))
 <?php if( !empty($_GET['ID_PERSONA']) && !empty($_GET['action']) ){ ?>
 
 <div>	
-<form class="form" action="#" method="post"> 
+<form class="form" action="#" method="post">
 
 <?php $sql1= "SELECT * FROM `persona`
 				WHERE ID_PERSONA = '$capt'";
 $query = $db->query($sql1);?>
-		<h2>ACTUALIZAR DATOS</h2>
-            <select name="ttdoc">
-			       <?php
-			        foreach ($db->query('SELECT ID_TIPO_DOC, DES_TD FROM tipo_documento') as $row)
-			        {
-			            echo '<option value="'.$row['ID_TIPO_DOC'].'">'.$row['DES_TD'].'</option>';
-			        }
-			       ?>
-			</select>
-<?php  while ($row=$query->fetch(PDO::FETCH_ASSOC)) 
-{
-    ?>
 
-			<input type="text" name="old_user" value="<?php echo $row["ID_PERSONA"]; ?>" style='display: none'>
-			<input type="text" name="new_user" value="<?php echo $row["ID_PERSONA"]; ?>" placeholder="Numero de documento" required>
+		<h2>ACTUALIZAR DATOS</h2>
+		<?php  while ($row=$query->fetch(PDO::FETCH_ASSOC))
+{
+    ?>		<input type="text" name="tdoc" value="<?php echo $row["TD_PERSONA"]; ?>" readonly='readonly'>
+   			 <input type="number" name="old_user" value="<?php echo $row["ID_PERSONA"]; ?>" readonly = 'readonly'>
 			<input type="text" name="nnombre" value="<?php echo $row["PRIMER_NOMBRE"]; ?>" placeholder="Primer nombre">
 			<input type="text" name="nnombree" value="<?php echo $row["SEGUNDO_NOMBRE"]; ?>" placeholder="Segungo nombre">
 			<input type="text" name="aapel" value="<?php echo $row["PRIMER_APELLIDO"]; ?>" placeholder="Primer apellido">
@@ -181,9 +175,9 @@ $query = $db->query($sql1);?>
 
 </form>
 </div>
-<?php  } } // Fin Validacion para mostrar formulario de Actualizar registro
-
-$sql1= "SELECT DES_TD, ID_PERSONA,PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SEGUNDO_APELLIDO, TELEFONO FROM persona
+<?php  } 
+} // Fin Validacion para mostrar formulario de Actualizar registro
+$sql1= "SELECT DES_TD, ID_PERSONA,TD_PERSONA,PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SEGUNDO_APELLIDO, TELEFONO FROM persona
     JOIN tipo_documento ON ID_TIPO_DOC=TD_PERSONA";
 $query = $db->query($sql1);
 

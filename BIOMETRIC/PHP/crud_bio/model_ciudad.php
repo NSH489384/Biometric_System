@@ -37,7 +37,7 @@
 		public function Eliminar_ciudad($id_ciu)
 		{
 
-			$sql = "DELETE FROM ciudad WHERE ID_CIUDAD = '$id_ciu'";
+			$sql = "CALL pa_eliminar_ciudad('$id_ciu')";
 
 			$this->pdo->query($sql);
 
@@ -46,3 +46,4 @@
 		
 	}
 ?>
+

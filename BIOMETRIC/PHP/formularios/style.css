@@ -5,6 +5,11 @@
     --color-dark: #1d2231;
     --text-gray: #8390a2;
 }
+h4{
+  font-size: 18px;
+  color: #AED6F1;
+  text-align: center;
+}
 
 *{
     padding: 0;
@@ -46,7 +51,6 @@
     padding-left: 1rem;
     display: block;
     font-size: 1rem;
-    color: #fff;
 }
 .sidebar-menu a.active {
     background: #fff;
@@ -88,7 +92,7 @@ header label span {
 }
 
 .search-wrapper {
-    border: 1px solid #ccc;
+    border: 1px solid rgb(226, 30, 30);
     border-radius: 30px;
     height: 50px;
     display: flex;
@@ -125,12 +129,17 @@ header label span {
     margin-top: -3px;
 }
 
-main {
+main{
+    background: url(../assets/images/fond_formu.jpeg);
+    background-repeat: no-repeat;
+    background-size: 1450px 780px;
+    margin-top: 150px;
+    min-height: calc(100vh - 83px);
+    left: 280PX;
     margin-top: 83px;
     padding: 2rem 1.5rem;
-    background: #c6cbd3;
-    min-height: calc(100vh - 83px);
 }
+
 
 main h1 {
     text-align: center;
@@ -165,6 +174,13 @@ form h2 {
     border-radius: 30px;
 }
 .form select {
+    margin: 10px;
+    padding: 8px;
+    width: 380px;
+    align-content: center;
+    border-radius: 30px;
+}
+.form input[type=email] {
     margin: 10px;
     padding: 8px;
     width: 380px;
@@ -208,5 +224,26 @@ tr{background-color: #D9E2E9}
 th {
     align-items: center;
     background-color: #6765d4;
-    color: white;
+    color: rgb(12, 11, 11);
+}
+
+a {
+    background-color: #babae5;
+    color: rgb(8, 8, 8);
+    border-radius: 30px 30px 30px 30px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.manual {
+    display: flex;
+    justify-content: left;
+    justify-content: space-between;
+}
+
+hr
+{
+   width: 95%;
+   margin: auto;
 }

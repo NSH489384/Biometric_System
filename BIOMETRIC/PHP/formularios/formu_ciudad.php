@@ -1,7 +1,7 @@
-<?php 
+<?php
 require_once '../crud_bio/model_ciudad.php';
 require_once '../conexion.php';
-    $db = conexion::conectar();   
+    $db = conexion::conectar();
     ?>
 <?php
 // INICIO DE VALIDACION Y SELECCION DE CASOS A REALIZAR INSERT - UPDATE - DELETE - SELECT
@@ -12,7 +12,7 @@ if(isset($_REQUEST['action']))
 // CASO PARA METODO ACTUALIZAR
         case 'actualizar':
         $update=new Ciudad();
-        $update->Actualizar_ciudad($_POST["old_idd"], $_POST["new_idd"], $_POST["nnom_ciu"],$_POST["eestado"]);
+        $update->Actualizar_ciudad($_POST["old_idd"], $_POST["new_idd"], $_POST["nnom_ciu"],$_POST["estado"]);
 
             break;
 
@@ -24,7 +24,7 @@ if(isset($_REQUEST['action']))
          break;
 
 // CASO PARA METODO ELIMINAR
-        case 'eliminar':
+         case 'eliminar':
         $delete=new Ciudad();
         $delete->Eliminar_ciudad($_GET["ID_CIUDAD"]);
 
@@ -67,19 +67,22 @@ if(isset($_REQUEST['action']))
 					<a href="formu_Usuario.php"><span class="las la-book"></span><span>Registro Usuario</span></a>
 				</li>
 				<li>
-					<a href="formu_cliente.php"><span class="las la-chart-line""></span><span>Registro Cliente</span></a>
+					<a href="formu_cliente.php"><span class="las la-chart-line"></span><span>Registro Cliente</span></a>
 				</li>
 				<li>
 					<a href="formu_ciudad.php" class="active"><span class="las la-map"></span><span>Registro Ciudad</span></a>
 				</li>
 				<li>
-					<a href="formu_Vehiculo.php"><span class="las la-car"></span><span>registro Vehiculo</span></a>
+					<a href="formu_Vehiculo.php"><span class="las la-car"></span><span>Registro Vehiculo</span></a>
 				</li>
 				<li>
-					<a href="formu_modelo_veh.php"><span class="las la-car"></span><span>registro modelo de vehiculo</span></a>
+					<a href="formu_modelo_veh.php"><span class="las la-car"></span><span>Registro Modelo de Vehiculo</span></a>
 				</li>
 				<li>
-					<a href="formu_EPS.php"><span class="las la-hospital"></span><span>registro EPS</span></a>
+					<a href="formu_eps.php"><span class="las la-hospital"></span><span>Registro EPS</span></a>
+				</li>
+					<li>
+					<a href="formu_contacto_e.php"><span class="las la-hospital"></span><span>Registro Contacto Emergencia</span></a>
 				</li>
 			</ul>
 
@@ -129,7 +132,9 @@ if(isset($_REQUEST['action']))
         	   	   <label>Estado: </label><br>
                    Active <input type="radio" name="estado" value="1" checked>
                    Inactive <input type="radio" name="estado" value="0"><br>
-        	   	   <input type="submit" value="Registrar" onclick="this.form.action = '?action=registrar';"/>	
+        	   	   <input type="submit" value="Registrar" onclick="this.form.action = '?action=registrar';"/>
+        	   		
+        	   		
         	   	</form>
 </div>
 <?php } ?> <!-- FIN - Formulario nuevo registro -->
@@ -152,15 +157,15 @@ $query = $db->query($sql1);?>
 			<input type="text" name="new_idd" value="<?php echo $row["ID_CIUDAD"]; ?>" placeholder="Numero de ID" required>
 			<input type="text" name="nnom_ciu" value="<?php echo $row["DES_CIUDAD"]; ?>" placeholder="Ciudad">
             <label>Estado: </label><br><br>
-            <label>Active</label><input type="radio" name="eestado" value="1"<?php echo $row['ESTADO_CIUDAD'] === '1' ? 'checked' : ''?>  >
-            <label>Inactive</label><input type="radio" name="eestado" value="0"<?php echo $row['ESTADO_CIUDAD'] === '0' ? 'checked' : ''?>  >
+            <label>Active</label><input type="radio" name="estado" value="1"<?php echo $row['ESTADO_CIUDAD'] === '1' ? 'checked' : ''?>  >
+            <label>Inactive</label><input type="radio" name="estado" value="0"<?php echo $row['ESTADO_CIUDAD'] === '0' ? 'checked' : ''?>  >
 			<p><input class="submit-button" type="submit" value= "Actualizar" onclick= "this.form.action = '?action=actualizar';"/>
 
 
 </form>
 </div>
 <?php  }} // Fin Validacion para mostrar formulario de Actualizar registro
-$sql1= "SELECT * FROM ciudad";
+$sql1= "SELECT * FROM ciudad;";
 $query = $db->query($sql1);
 
 if($query->rowCount()>0):?>

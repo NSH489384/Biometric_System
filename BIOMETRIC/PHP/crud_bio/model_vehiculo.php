@@ -1,6 +1,6 @@
 <?php 
 	class Vehiculo  
-	{
+	{ 
 		private $pdo;
 		
 		public function __CONSTRUCT()
@@ -15,9 +15,8 @@
 
 		public function Ingresar_vehiculo($placaa, $colorr, $estado_veh,$fk_tipo_veh,$fk_modelo,$fk_biometrico)
 		{
-				$sql = "INSERT INTO vehiculo (PLACA,COLOR,ESTADO_VEHI,FK_TIPO_VEHICULO,FK_MODELO,FK_BIOMETRICO)
-                VALUES('$placaa','$colorr','$estado_veh', '$fk_tipo_veh', '$fk_modelo','$fk_biometrico');";
-
+			$sql = "INSERT INTO vehiculo (PLACA, COLOR, ESTADO_VEHI, FK_TIPO_VEHICULO, FK_MODELO, FK_BIOMETRICO)
+                VALUES('$placaa','$colorr','$estado_veh', '$fk_tipo_veh', '$fk_modelo', '$fk_biometrico');";
 
 			$this->pdo->query($sql);
 

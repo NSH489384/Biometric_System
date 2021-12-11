@@ -1,4 +1,4 @@
-<?php  
+<?php   
 	class Modelo_Vehiculo
 	{
 		private $pdo; 

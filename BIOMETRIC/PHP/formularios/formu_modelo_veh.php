@@ -70,16 +70,20 @@ if(isset($_REQUEST['action']))
 					<a href="formu_cliente.php"><span class="las la-chart-line""></span><span>Registro Cliente</span></a>
 				</li>
 				<li>
-					<a href="formu_ciudad.php" class="active"><span class="las la-map"></span><span>Registro Ciudad</span></a>
+					<a href="formu_ciudad.php"><span class="las la-map"></span><span>Registro Ciudad</span></a>
 				</li>
 				<li>
-					<a href="formu_Vehiculo.php"><span class="las la-car"></span><span>registro Vehiculo</span></a>
+					<a href="formu_Vehiculo.php"><span class="las la-car"></span><span>Registro Vehiculo</span></a>
+				</li>
+				
+				<li>
+					<a href="formu_modelo_veh.php" class="active"><span class="las la-car"></span><span>Registro Modelo de Vehiculo</span></a>
 				</li>
 				<li>
-					<a href="formu_modelo_veh.php"><span class="las la-car"></span><span>registro modelo de vehiculo</span></a>
+					<a href="formu_eps.php"><span class="las la-hospital"></span><span>Registro EPS</span></a>
 				</li>
-				<li>
-					<a href="formu_EPS.php"><span class="las la-hospital"></span><span>registro EPS</span></a>
+					<li>
+					<a href="formu_contacto_e.php"><span class="las la-hospital"></span><span>Registro Contacto Emergencia</span></a>
 				</li>
 			</ul>
 
@@ -125,7 +129,7 @@ if(isset($_REQUEST['action']))
                 <form method="post" action="#">
 				<h2>NUEVO REGISTRO</h2>
                    <input type="number" name="id_modelo" placeholder="Ingrese numero de id">
-        	   	   <input type="text" name="nom_modelo" placeholder="Eps"><br>
+        	   	   <input type="text" name="nom_modelo" placeholder="Modelo Vehiculo"><br>
         	   	   <label>Estado: </label><br>
                    Active <input type="radio" name="estado_modelo" value="1" checked>
                    Inactive <input type="radio" name="estado_modelo" value="0"><br>

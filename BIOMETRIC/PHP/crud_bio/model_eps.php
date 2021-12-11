@@ -11,7 +11,7 @@
 			catch(Exception $ex){
 				die($e->getMessage());
 			}
-		}
+		} 
 
 		public function Ingresar_eps($id_epss, $desc_epss, $estado_eps)
 		{
