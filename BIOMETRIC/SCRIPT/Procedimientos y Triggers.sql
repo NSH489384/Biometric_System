@@ -1,0 +1,17 @@
+use biometric_system
+DELIMITER //
+
+CREATE PROCEDURE pa_nuevo_ciudad(
+IN ID_CIUDAD INT(11),
+IN DES_CIUDAD VARCHAR(45),
+IN ESTADO_CIUDAD TINYINT(1)
+)
+BEGIN 
+INSERT INTO ciudad (ID_CIUDAD, DES_CIUDAD,ESTADO_CIUDAD)
+VALUES (ID_CIUDAD, DES_CIUDAD,ESTADO_CIUDAD);
+
+END //
+
+DELIMITER ;
+
+CALL pa_nuevo_ciudad("$id_ciu","$nom_ciu","$estado");

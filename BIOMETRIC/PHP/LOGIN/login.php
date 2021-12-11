@@ -1,3 +1,7 @@
+  <?php
+    require_once '../conexion.php';
+    $db = conexion::conectar();
+    ?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -6,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style_forms.css">
 
 	<title>Inicio login</title>
 </head>
@@ -29,13 +33,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fab fa-google-plus-g"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-rss"></i></a>
-                </li>
+                
             </nav>
-            <input type="text" id="nav-search" class="nav-search mx-auto" name="" class="form-control">
-            <div class="ml-0 mr-0 pb-1">
-                <nav class="navbar navbar-expand-md">
+                            <nav class="navbar navbar-expand-md">
 
                     <button class="navbar-toggler ml-auto" data-target="#my-nav" data-toggle="collapse"
                         aria-controls="my-nav" aria-expanded="false" onclick="myFunction(this)"
@@ -63,10 +63,6 @@
                                 <form action="" method="POST">
                                     <div class="input-group mt-0 mx-auto" style="width:16px;">
 
-                                        <div class="">
-                                            <img src="../assets/images/search-icon.png" id="toggle-search"
-                                                class="ml-2 toggle-search" alt="search icon">
-                                        </div>
                                     </div>
                                 </form>
                             </li>
@@ -79,20 +75,22 @@
 
 	<h1 style="color: white">LOGIN</h1>
 
-	<form method="post" action="validacion.php">
-        <label style="color: white" >Tipo documento</label><br>
+	<form class="form" method="post" action="validacion.php">
+        <label >Tipo documento</label><br>
         <select name="tdoc">
-            <option value="CC">cedula ciudadania</option> 
-            <option value="TI" >Tarjeta de identidad</option>
-            <option value="CE">Cedula de extrangeria</option>
-        </select><br>		
-        <label style="color: white">NUMERO DOCUMENTO</label>
-		<p><input type="number" placeholder="Numero documento" name="user" required></p>
-		<label style="color: white">Contraseña</label><br>
-		<input type="password" placeholder="Contraseña" name="pass" required><br>
-		<br><input type="submit" value="ingresar">
-		<input type="submit" value="registrase">
-		<p><a href="recu_pass.php">Olvide mi Contraseña</a></p>
+                <?php
+                    foreach ($db->query('SELECT ID_TIPO_DOC, DES_TD FROM tipo_documento') as $row)
+                    {
+                        echo '<option value="'.$row['ID_TIPO_DOC'].'">'.$row['DES_TD'].'</option>';
+                    }
+                ?>
+            </select><br>		
+        <label >NUMERO DOCUMENTO</label>
+		<input type="number" placeholder="Ingrese su numero de documento" name="user" required>
+		<label >Contraseña</label><br>
+		<input type="password" placeholder="Ingrese su Contraseña" name="pass" required><br>
+		<input class="submit" type="submit" value="ingresar">
+		<p><a class="a" href="index_recup.php">Olvide mi Contraseña</a></p>
 
 	</form><br><br><br><br>
 

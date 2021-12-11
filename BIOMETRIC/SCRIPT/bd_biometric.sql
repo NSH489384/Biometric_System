@@ -1,23 +1,20 @@
-CREATE DATABASE IF NOT EXISTS biometric_system;
-USE biometric_system;
 
 -- -----------------------------------------------------
 -- TIPO DOCUMENTO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.TIPO_DOCUMENTO
+CREATE TABLE tipo_documento
  (
   ID_TIPO_DOC VARCHAR(10) NOT NULL  ,
   DES_TD VARCHAR(30) NOT NULL ,
   ESTADO_TD TINYINT(1) NOT NULL ,
   PRIMARY KEY (ID_TIPO_DOC)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- PERSONA
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.PERSONA
+CREATE TABLE persona
  (
   ID_PERSONA VARCHAR(15) NOT NULL,
   TD_PERSONA VARCHAR(10) NOT NULL,
@@ -32,39 +29,37 @@ CREATE TABLE IF NOT EXISTS biometric_system.PERSONA
     REFERENCES biometric_system.TIPO_DOCUMENTO (ID_TIPO_DOC)
 	ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+ );
+
 
 
 -- -----------------------------------------------------
 -- ROL
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.ROL
+CREATE TABLE rol
  (
   ID_ROL INT NOT NULL ,
   DESC_ROL VARCHAR(45) NOT NULL ,
   ESTADO_ROL BOOLEAN  NOT NULL ,
   PRIMARY KEY (ID_ROL)
-  )
-ENGINE = InnoDB;
+  );
 
 -- -----------------------------------------------------
 -- PARENTESCO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.PARENTESCO
+CREATE TABLE parentesco
  (
   ID_PARENTESCO INT NOT NULL,
   DES_PARENTESCO VARCHAR(45) NOT NULL ,
   ESTADO_PARENTESCO TINYINT(1) NOT NULL ,
   PRIMARY KEY (ID_PARENTESCO)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- BENEFICIARIO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.BENEFICIARIO
+CREATE TABLE beneficiario
  (
   ID_BENEFICIARIO VARCHAR(15) NOT NULL ,
   TD_BENEFICIARIO VARCHAR(10) NOT NULL,
@@ -75,40 +70,36 @@ CREATE TABLE IF NOT EXISTS biometric_system.BENEFICIARIO
     REFERENCES biometric_system.PERSONA (ID_PERSONA , TD_PERSONA)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 
 -- -----------------------------------------------------
--- RECUPERAR CONTRASEÑA
+-- RECUPERAR contraseña
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.RECUPERAR
+CREATE TABLE recuperar
  (
   ID_RECUPERACION INT NOT NULL AUTO_INCREMENT ,
   CORREO_RECUP VARCHAR(45) NOT NULL,
   PRIMARY KEY (ID_RECUPERACION)
-  )
-ENGINE = InnoDB;
-
+  );
 
 -- -----------------------------------------------------
--- CAMBIO_CONTRASEÑA
+-- cambio_contraseña
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.CAMBIO_CONTRASEÑA
+CREATE TABLE cambio_contraseña
  (
   ID_CAMBIO INT NOT NULL AUTO_INCREMENT,
   CONTRA_ANTERIOR VARCHAR(45) NOT NULL,
   CONTRA_NUEVA VARCHAR(45) NOT NULL,
   CONFIRAMCION_CONTRA VARCHAR(45) NOT NULL,
   PRIMARY KEY (ID_CAMBIO)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- USUARIO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.USUARIO 
+CREATE TABLE usuario
 (
   ID_USUARIO INT NOT NULL ,
   NUMERO_DOC VARCHAR(15) NOT NULL ,
@@ -136,13 +127,12 @@ CREATE TABLE IF NOT EXISTS biometric_system.USUARIO
     REFERENCES biometric_system.CAMBIO_CONTRASEÑA (ID_CAMBIO)
 	ON DELETE CASCADE
     ON UPDATE CASCADE
-    )  
-    ENGINE = InnoDB;
+    );
     
 -- -----------------------------------------------------
 -- CONTACTO_EMERGENCIA
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.CONTACTO_EMERGENCIA
+CREATE TABLE contacto_emergencia
  (
   ID_CONTACTO VARCHAR(15) NOT NUll ,
   TD_CONTACTO VARCHAR(10) NOT NULL ,
@@ -157,13 +147,11 @@ CREATE TABLE IF NOT EXISTS biometric_system.CONTACTO_EMERGENCIA
     REFERENCES biometric_system.PARENTESCO(ID_PARENTESCO)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
-
+    );
 -- -----------------------------------------------------
 -- ROL_USUARIO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.ROL_USUARIO
+CREATE TABLE rol_usuario
  (
   ROL_ID_ROL INT NOT NULL,
   USUARIO_ID_USUARIO INT NOT NULL,
@@ -180,14 +168,13 @@ CREATE TABLE IF NOT EXISTS biometric_system.ROL_USUARIO
     REFERENCES biometric_system.USUARIO (ID_USUARIO, NUMERO_DOC , TD_USUARIO)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 
 -- -----------------------------------------------------
 -- LOGIN
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.LOGIN
+CREATE TABLE login
  (
   ID_LOGIN INT NOT NULL ,
   NUMERO_DOC_LOG VARCHAR(15) NOT NULL ,
@@ -206,41 +193,37 @@ CREATE TABLE IF NOT EXISTS biometric_system.LOGIN
     REFERENCES biometric_system.ROL(ID_ROL)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
-
+    );
 
 
 -- -----------------------------------------------------
 -- CIUDAD
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.CIUDAD
+CREATE TABLE ciudad
 (
   ID_CIUDAD INT NOT NULL AUTO_INCREMENT ,
   DES_CIUDAD VARCHAR(45) NOT NULL ,
   ESTADO_CIUDAD BOOLEAN NOT NULL ,
   PRIMARY KEY (ID_CIUDAD)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- EPS
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.EPS
+CREATE TABLE eps
 (
   ID_EPS INT NOT NULL AUTO_INCREMENT ,
   DES_EPS VARCHAR(20) NOT NULL ,
   ESTADO_EPS BOOLEAN NOT NULL ,
   PRIMARY KEY (ID_EPS)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- CLIENTE
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.CLIENTE
+CREATE TABLE cliente
  (
   ID_CLIENTE VARCHAR(15) NOT NULL ,
   TD_CLIENTE VARCHAR(10) NOT NULL ,
@@ -271,14 +254,13 @@ CREATE TABLE IF NOT EXISTS biometric_system.CLIENTE
     REFERENCES biometric_system.EPS(ID_EPS)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 
 -- -----------------------------------------------------
 -- ADMINISTRADOR
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.ADMINISTRADOR
+CREATE TABLE administrador
  (
   USUARIO_NUMERO_DOC VARCHAR(15) NOT NULL ,
   USUARIO_TD_USUARIO VARCHAR(10) NOT NULL ,
@@ -288,51 +270,46 @@ CREATE TABLE IF NOT EXISTS biometric_system.ADMINISTRADOR
     REFERENCES biometric_system.USUARIO (NUMERO_DOC , TD_USUARIO)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 
 -- -----------------------------------------------------
 -- TIPO_VEHICULO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.TIPO_VEHICULO
+CREATE TABLE tipo_vehiculo
 (
   ID_TIPO_VEH INT NOT NULL ,
   DESC_TV VARCHAR(15) NOT NULL,
   ESTADO_TV BOOLEAN NOT NULL ,
   PRIMARY KEY (ID_TIPO_VEH)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- MODELO_VEHICULO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.MODELO_VEHICULO
+CREATE TABLE modelo_vehiculo
  (
   ID_MODELO INT NOT NULL ,
   DES_MODELO VARCHAR(45) NOT NULL ,
   ESTADO_MODELO BOOLEAN NOT NULL ,
   PRIMARY KEY (ID_MODELO)
-  )
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- BIOMETRICO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.BIOMETRICO
+CREATE TABLE biometrico
  (
   ID_BIOMETRICO VARCHAR(20) NOT NULL ,
   PRIMARY KEY (ID_BIOMETRICO)
-  )
-ENGINE = InnoDB;
-
+  );
 
 -- -----------------------------------------------------
 -- VEHICULO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_sYstem.VEHICULO
+CREATE TABLE vehiculo
  (
   PLACA VARCHAR(15) NOT NULL ,
   COLOR VARCHAR(20) NOT NULL ,
@@ -355,14 +332,12 @@ CREATE TABLE IF NOT EXISTS biometric_sYstem.VEHICULO
     FOREIGN KEY (FK_BIOMETRICO)
     REFERENCES biometric_system.BIOMETRICO (ID_BIOMETRICO)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
+    ON UPDATE CASCADE);
 
 -- -----------------------------------------------------
 -- CLIENTE_VEHICULO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.CLIENTE_VEHICULO
+CREATE TABLE cliente_vehiculo
  (
   ID_CLIENTE_VEH VARCHAR(15) NOT NULL,
   TD_CLIENTE_VEH VARCHAR(10) NOT NULL ,
@@ -378,13 +353,12 @@ CREATE TABLE IF NOT EXISTS biometric_system.CLIENTE_VEHICULO
     REFERENCES biometric_system.VEHICULO(PLACA)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 -- -----------------------------------------------------
 -- BENEFICIARIO_CLIENTE
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.BENEFICIARIO_CLIENTE
+CREATE TABLE beneficiario_cliente
  (
   BENEFICIARIO_ID_BENEFICIARIO VARCHAR(15) NOT NULL,
   BENEFICIARIO_TD_BENEFICIARIO VARCHAR(10) NOT NULL,
@@ -407,14 +381,12 @@ CREATE TABLE IF NOT EXISTS biometric_system.BENEFICIARIO_CLIENTE
     REFERENCES biometric_system.PARENTESCO(ID_PARENTESCO)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
-
+    );
 
 -- -----------------------------------------------------
 -- HUELLA
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.HUELLA 
+CREATE TABLE huella
 (
   ID_HUELLA INT NOT NULL AUTO_INCREMENT ,
   DESC_HUELLA VARCHAR(45) NOT NULL ,
@@ -428,14 +400,13 @@ CREATE TABLE IF NOT EXISTS biometric_system.HUELLA
     REFERENCES biometric_system.BIOMETRICO (ID_BIOMETRICO)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 
 -- -----------------------------------------------------
 -- INGRESO_BENEFICIARIO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.INGRESO_BENEFICIARIO
+CREATE TABLE ingreso_beneficiario
  (
   ID_INGRESO_BENEF INT NOT NULL ,
   BENEFICIARIO_ID_BENEFICIARIO VARCHAR(15) NOT NULL ,
@@ -451,14 +422,13 @@ CREATE TABLE IF NOT EXISTS biometric_system.INGRESO_BENEFICIARIO
     REFERENCES biometric_system.HUELLA (ID_HUELLA)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 
 -- -----------------------------------------------------
 -- INGRESO_CLIENTE
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.INGRESO_CLIENTE
+CREATE TABLE ingreso_cliente
  (
   ID_INGRESO_CLIENTE INT NOT NULL,
   CLIENTE_ID_CLIENTE VARCHAR(15) NOT NULL,
@@ -474,13 +444,12 @@ CREATE TABLE IF NOT EXISTS biometric_system.INGRESO_CLIENTE
     REFERENCES biometric_system.HUELLA(ID_HUELLA)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    )
-ENGINE = InnoDB;
+    );
 
 -- -----------------------------------------------------
 -- HISTORIAL_ENCENDIDO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS biometric_system.HISTORIAL
+CREATE TABLE historial
 (
   ID_HISTORIAL INT AUTO_INCREMENT NOT NULL, 
   FECHA_HISTORIAL DATETIME NOT NULL,
@@ -506,13 +475,12 @@ CREATE TABLE IF NOT EXISTS biometric_system.HISTORIAL
   REFERENCES biometric_system.VEHICULO(PLACA)
   ON DELETE CASCADE
   ON UPDATE CASCADE
-  )
-  ENGINE = InnoDB;
+  );
   
   
   
   
-  CREATE TABLE IF NOT EXISTS biometric_system.PERFIL
+  CREATE TABLE perfil
 (
   ID_PERFIL INT AUTO_INCREMENT NOT NULL, 
   ID_CLIENTE_P VARCHAR(15)NOT NULL,
@@ -536,8 +504,7 @@ CREATE TABLE IF NOT EXISTS biometric_system.HISTORIAL
   REFERENCES biometric_system.VEHICULO(PLACA)
   ON DELETE CASCADE
   ON UPDATE CASCADE
-  )
-  ENGINE = InnoDB;
+  );
   
   
  

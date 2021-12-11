@@ -1,60 +1,96 @@
+<?php
+session_start();
 
+$active_session_admin=$_SESSION["admin"];
 
-<!DOCTYPE html>
+if ($active_session_admin!='1') 
+{
+	header('location: login.php');
+}
+?>
+<!DOCTYPE HTML PUBLIC "">
 <html>
 <head>
-	    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-	<title>modulo_cliente</title>
+<meta>
+<title>Modulo admin</title>
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<link rel="stylesheet" href="../formularios/style.css">
 </head>
+
 <body>
-	<div class="container-fluid pt-3">
-        <nav class="navbar navbar-dark bg-dark">
-        	<a class="navbar-brand" href="#" >
-            <img src="../assets/images/logo12.jpg" width="50" height="50" class="d-inline-block align-top" alt="">   
-            𝑩𝒊𝒐𝒎𝒆𝒕𝒓𝒊𝒄-𝒔𝒚𝒔𝒕𝒆𝒎~𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐 𝒂𝒅𝒎𝒊𝒏𝒊𝒔𝒕𝒓𝒂𝒅𝒐𝒓
-            </a>
-            <span class="glyphicon glyphicon-align-left"></span>
-            <div>
-            	<button class="btn btn-success ml-2" type="submit">CIERRE SESSION</button>
-            </div>
-        </nav>
-    </div>
-<footer class="container-fluid pt-5">
-        <div class="container">
-        	   <br><br><br><br><br> <br><br><br><br>
-            <h2 class="logo text-center">BIOMETRIC-SYSTEM</h2>
-            <nav class="nav nav-fill mx-auto mt-5">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fab fa-google-plus-g"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-rss"></i></a>
-                </li>
-            </nav>
+	<div class="sidebar">
+	    <div class="sidebar-brand">
+		  <h3><span class="lab la-accusoft"></span> BIOMETRIC-SYSTEM</h3>
+		</div>
+		<div class="sidebar-menu">
+			<ul>
+				<li>
+					<a href="modulo_admin.php" class="active"><span class="las la-igloo"></span><span>Inicio</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_pers.php"><span class="las la-user"></span><span>Registro Persona</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_usuario.php"><span class="las la-book"></span><span>Registro Usuario</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_cliente.php"><span class="las la-chart-line"></span><span>Registro Cliente</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_ciudad.php"><span class="las la-map"></span><span>Registro Ciudad</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_vehiculo.php"><span class="las la-car"></span><span>Registro Vehiculo</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_tipo_vehiculo.php"><span class="las la-car"></span><span>Registro Tipo Vehiculo</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_modelo_veh.php"><span class="las la-car"></span><span>Registro Modelo Vehiculo</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_eps.php"><span class="las la-hospital"></span><span>Registro EPS</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_contacto_e.php"><span class="las la-hospital"></span><span>Registro Contacto Emergencia</span></a>
+				</li>
+			</ul>
 
-        </div>
+		</div>
 
-        <div class="copyright mt-4">
-            <p class="text-center">&copy; 2020 <a href="#" class="text-white">BIOMETRIC-SYSTEM</a>. Todos los derechos reservados. Diseñado
-                por <a href="https://freehtml5.co/shahala" target="_blank" class="text-white">biometric-system.co</a>.</p>
-        </div>
-
-</footer>
+	</div>
+	<div class="main-content">
+		<header>
+			<h2>
+				<label for="">
+					<span class="las la-bars"></span>
+				</label>
+				Panel
+			</h2>
+			<div class="search-wrapper">
+				<span class="las la-search"></span>
+				<input type="search" placeholder="Buscar aqui"/>
+			</div>
+			<div class="user-wrapper">
+				<img src="../assets/images/liseth.jpg" width="40px" height="40px" alt="" >
+				<div>
+					<h4>Liseth Rojas</h4>
+					<small>Administrador</small>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="manual">
+				<div>
+					<h1 class="bien">BIENVENIDO</h1>
+				</div>
+				<div>
+					<h3>Descarga de manuales</h3><br>
+					<a href="../Manual_tecnico.pdf">Manual tecnico</a>
+					<a href="../Manual_de_Operacion.pdf">Manual de Operaciones</a>
+				</div>
+			</div>
+		</main>
+	</div>
 </body>
 </html>

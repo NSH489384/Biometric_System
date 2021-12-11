@@ -102,7 +102,6 @@ insert into cliente values("98559269","CE","Cra 45# 23 sur",1,"454647489","CE",4
 --  ----------------- ROL
 insert into rol (ID_ROL,DESC_ROL,ESTADO_ROL)
 values(1,"Administrador",1);
-
 insert into rol values(2,"Cliente",1);
 
 
@@ -138,7 +137,11 @@ values("azs_123","Azul",1,1,3,"BS001");
 insert into vehiculo values("dep_345","rojo",1,2,5,"BS002");
 insert into vehiculo values("SER_235","gris",1,1,6,"BS003");
 
-INSERT INTO rol_usuario (ROL_ID_ROL, `USUARIO_ID_USUARIO`, `USUARIO_NUMERO_DOC`, `USUARIO_TD_USUARIO`) VALUES
+insert into rol_usuario (ROL_ID_ROL, USUARIO_ID_USUARIO, USUARIO_NUMERO_DOC, USUARIO_ID_USUARIO) VALUES
+(1, 2, 252426272, "PA"),
+(1, 1, 1233504764, "CC");
+
+INSERT INTO `rol_usuario` (`ROL_ID_ROL`, `USUARIO_ID_USUARIO`, `USUARIO_NUMERO_DOC`, `USUARIO_TD_USUARIO`) VALUES
 ('1', '2', '252426272', 'PA'), 
 ('1', '1', '1233504764', 'CC'), 
 ('2', '3', '10873452', 'TI'), 

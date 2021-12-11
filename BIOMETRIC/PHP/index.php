@@ -25,11 +25,11 @@
             <h2 class="logo">BIOMETRIC-SYSTEM</h2>
             <nav class="nav nav-fill mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
+                    <a class="nav-link" href="#" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://twitter.com/fh5co" target="_blank"><i
+                    <a class="nav-link" href="#" target="_blank"><i
                             class="fab fa-twitter"></i></a>
                 </li>
                 <li class="nav-item">
@@ -95,11 +95,9 @@
                 <div class="card">
                     <img class="card-img" src="assets/images/vision.jpg" alt="">
                     <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column">
-                        <p>Spirituality</p>
-                        <hr />
                         <h2>NUESTRA VISION
                             Y OBJETIVOS</h2>
-                        <a href="article.html" class="btn">LEER MAS</a>
+                        <a href="objetivos.html" class="btn">LEER MAS</a>
                     </div>
                 </div>
             </div>
@@ -107,11 +105,9 @@
                 <div class="card">
                     <img class="card-img" src="assets/images/right-img.jpg" alt="">
                     <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column">
-                        <p>DECOR</p>
-                        <hr />
                         <h2>CONOCENOS
                             </h2>
-                        <a href="article.html" class="btn">LEER MAS</a>
+                        <a href="conocenos.html" class="btn">LEER MAS</a>
                     </div>
                 </div>
             </div>
