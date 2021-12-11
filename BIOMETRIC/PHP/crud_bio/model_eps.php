@@ -1,49 +1,49 @@
-<?php
-
-class Eps
-{
-	private $pdo;
-	
+<?php    
+	class Eps
+	{
+		private $pdo;
+		
 		public function __CONSTRUCT()
 		{
-			try
-			{
+			try{
 				$this->pdo = conexion::conectar();
-		    }
-			catch(Exception $ex)
-			{
+			}
+			catch(Exception $ex){
 				die($e->getMessage());
 			}
 		}
-		public function ingresar_Eps($id_e,$des_e,$estado_e)
+
+		public function Ingresar_eps($id_epss, $desc_epss, $estado_eps)
 		{
-			$sql = "INSERT INTO eps(ID_EPS,DES_EPS,ESTADO_EPS)
-			        VALUES('$id_e','$des_e',$estado_e);";
-
-			        $this->pdo->query($sql);
-
-			print "<script>alert(\"Registro agregado exitosamente. \");window.location='form_eps.php';</script>";
-		}
-
-		public function Actualizar_eps($old_eps, $new_e, $des_e, $estado_e)
-		{
-
-			$sql = "UPDATE eps SET ID_EPS = '$new_e', DES_EPS = '$des_e', ESTADO_EPS = '$estado_e'
-			       WHERE ID_EPS = '$old_eps';";
+	
+				$sql = "INSERT INTO eps(ID_EPS,DES_EPS,ESTADO_EPS)
+                VALUES('$id_epss','$desc_epss','$estado_eps');";
 
 			$this->pdo->query($sql);
 
-			print "<script>alert(\"Registro Actualizado exitosamente. \");window.location='form_eps.php';</script>";
+			print "<script>alert(\"Eps agregada exitosamente. \");window.location='formu_eps.php';</script>";
 		}
 
-		public function Eliminar_eps($epss)
+		public function Actualizar_eps($old_eps, $new_eps, $des_eps, $estado_eps)
 		{
 
-			$sql = "DELETE FROM eps WHERE ID_EPS = '$epss'";
+			$sql = "UPDATE eps SET ID_EPS = '$new_eps', DES_EPS = '$des_eps', ESTADO_EPS = '$estado_eps'
+					WHERE ID_EPS = '$old_eps';";
 
 			$this->pdo->query($sql);
 
-			print "<script>alert(\"Registro Eliminado exitosamente. \");window.location='form_eps.php';</script>";
+			print "<script>alert(\"Eps Actualizada exitosamente. \");window.location='formu_eps.php';</script>";
 		}
-}
+
+		public function Eliminar_eps($id_epss)
+		{
+
+			$sql = "DELETE FROM eps WHERE ID_EPS = '$id_epss'";
+
+			$this->pdo->query($sql);
+
+			print "<script>alert(\"Eps Eliminada exitosamente. \");window.location='formu_eps.php';</script>";
+		}
+		
+	}
 ?>

@@ -1,5 +1,5 @@
 <?php 
-	class Ciudad
+	class Ciudad   
 	{
 		private $pdo;
 		
@@ -12,6 +12,7 @@
 				die($e->getMessage());
 			}
 		}
+
 		public function Ingresar_ciudad($id_ciu, $nom_ciu, $estado)
 		{
 	
@@ -19,18 +20,18 @@
 
 			$this->pdo->query($sql);
 
-			print "<script>alert(\"Registro agregado exitosamente. \");window.location='form_ciudad.php';</script>";
+			print "<script>alert(\"Ciudad agregada exitosamente. \");window.location='formu_ciudad.php';</script>";
 		}
 
 		public function Actualizar_ciudad($old_idd, $new_idd, $nnom_ciu, $eestado)
-		{
+		{ 
 
 			$sql = "UPDATE ciudad SET ID_CIUDAD = '$new_idd', DES_CIUDAD = '$nnom_ciu', ESTADO_CIUDAD = '$eestado'
 						WHERE ID_CIUDAD = '$old_idd';";
 
 			$this->pdo->query($sql);
 
-			print "<script>alert(\"Registro Actualizado exitosamente. \");window.location='form_ciudad.php';</script>";
+			print "<script>alert(\"Ciudad Actualizada exitosamente. \");window.location='formu_ciudad.php';</script>";
 		}
 
 		public function Eliminar_ciudad($id_ciu)
@@ -40,7 +41,7 @@
 
 			$this->pdo->query($sql);
 
-			print "<script>alert(\"Registro Eliminado exitosamente. \");window.location='form_ciudad.php';</script>";
+			print "<script>alert(\"Ciudad Eliminada exitosamente. \");window.location='formu_ciudad.php';</script>";
 		}
 		
 	}

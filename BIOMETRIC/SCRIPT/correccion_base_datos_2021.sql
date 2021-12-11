@@ -1,4 +1,4 @@
-CREATE DATABASE biometric_system; 
+CREATE DATABASE biometric_system;
 USE biometric_system;
 
 -- -----------------------------------------------------
