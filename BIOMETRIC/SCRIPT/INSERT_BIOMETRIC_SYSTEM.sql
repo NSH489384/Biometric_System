@@ -9,22 +9,25 @@ INSERT INTO tipo_documento(ID_TIPO_DOC,DES_TD, ESTADO_TD) VALUES
 -- --------------------------- PERSONA
 INSERT INTO persona(ID_PERSONA,TD_PERSONA,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SEGUNDO_APELLIDO,TELEFONO)
 VALUES("1233504764","CC","NOHORA","LISETH","ROJAS","YEPES",3112807335),
-("1127947342","CE","JONATHAN","LEONIDAS","MORENO","TROCHEZ",3057500422);
+("1127947342","CE","JONATHAN","LEONIDAS","MORENO","TROCHEZ",3057500422),
+("1341233242","PA","CRUZ","CECILIA","BLANDON","CORDOBA",3229071197),
+("1343203849","TI","NINEDLY",NULL,"HUEPA","DUCUARA",3213423247),
+("103255444","CE","MARIA","FERNANDA","RODRIGUEZ","SALAMANCA",3212496148);
 
 
 -- ---------------------- BENEFICIARIO
 INSERT INTO beneficiario(ID_BENEFICIARIO,TD_BENEFICIARIO,ESTADO_BENEFICIARIO)
-VALUES("10873452","TI",1);
+VALUES("1341233242","PA",1);
 
 
 
 
 -- ----------------- --- USUARIO 
-INSERT INTO usuario(ID_USUARIO,NUMERO_DOC,TD_USUARIO,CONTRASEÑA,CORREO_USUARIO,ESTADO_USUARIO,RECUPERAR_CONTRASEÑA,CAMBIO_CONTRASEÑA)
-VALUES(1,"1233504764","CC","raulrojas","norayepes2015@gmail.com.co",1,null,null),
-(2,1127947342,"CE","Bogota2020","leonidasmoreno953@gmail.com",1,null,null),
-(3,1341233242,"PA","Ceci2040","ccblandon7@misena.edu.co",1,null,null),
-(4,1343203849,"TI","ninedly1015","nshuepa@misena.edu.co",1,null,null);
+INSERT INTO usuario(NUMERO_DOC,TD_USUARIO,CONTRASEÑA,CORREO_USUARIO,ESTADO_USUARIO,RECUPERAR_CONTRASEÑA,CAMBIO_CONTRASEÑA)
+VALUES("1233504764","CC","raulrojas","norayepes2015@gmail.com.co",1,null,null),
+("1127947342","CE","Bogota2020","leonidasmoreno953@gmail.com",1,null,null),
+("1341233242","PA","Ceci2040","ccblandon7@misena.edu.co",1,null,null),
+("1343203849","TI","ninedly1015","nshuepa@misena.edu.co",1,null,null);
 
 
 -- -------------------------- ADMINISTRADOR
@@ -46,7 +49,6 @@ values(1,"Sanitas",1);
 insert into parentesco(ID_PARENTESCO,DES_PARENTESCO,ESTADO_PARENTESCO)
 values(1,"Esposo(a)",1);
 
- select *from persona;
 
 -- CONTACTO_EMERGENCIA
 
@@ -57,7 +59,7 @@ values("103255444","CE",1,1);
 -- -------------  CLIENTE
 
 insert into cliente (ID_CLIENTE,TD_CLIENTE,DIRECCION,ESTADO_CLIENTE,NUMERO_DOC_CONTACTO_E,TD_CONTACTO_E,FK_CIUDAD,FK_EPS)
-values("252426272","PA","Cra 54 # 46 SUR",1,"103255444","CE",2,4);
+values("1127947342","CE","Cra 54 # 46 SUR",1,"103255444","CE",1,1);
 
 
 
@@ -66,12 +68,10 @@ INSERT INTO rol (ID_ROL,DESC_ROL,ESTADO_ROL)
 values(1,"Administrador",1),
 (2,"Cliente",1);
 
-
-select * from login;
-
 -- ----------------- LOGN
 insert into login (ID_LOGIN,NUMERO_DOC_LOG,TIPO_DOC,CONTRASEÑA_LOGIN,ROL_ID_ROL)
-values(1,"10873452","TI","25082006",2);
+values(1,"1233504764","CC","raulrojas",1),
+	  (2,"1127947342","CE","1127947342",2);
 
 
 -- ------------ MODELO
@@ -88,14 +88,17 @@ insert into biometrico values
 
 --  ------------ VEHICULO
 insert into vehiculo(PLACA,COLOR,ESTADO_VEHI,FK_TIPO_VEHICULO,FK_MODELO,FK_BIOMETRICO)
-values("azs_123","Azul",1,1,3,"BS001");
+values("azs_123","Azul",1,1,1,"BS001");
+
+--  ------------ CLIENTE VEHICULO
+insert into cliente_vehiculo
+values("1127947342", "CE","azs_123");
 
 
-INSERT INTO `rol_usuario` (`ROL_ID_ROL`, `USUARIO_ID_USUARIO`, `USUARIO_NUMERO_DOC`, `USUARIO_TD_USUARIO`) VALUES
-('1', '1', '1233504764', 'CC'), 
-('2', '2', '1127947342', 'CE');
+INSERT INTO `rol_usuario` (`ROL_ID_ROL`, `USUARIO_NUMERO_DOC`, `USUARIO_TD_USUARIO`) VALUES
+('1', "1233504764", "CC"), 
+('2', "1127947342", "CE");
 
-select * from rol_usuario
 
 
 
