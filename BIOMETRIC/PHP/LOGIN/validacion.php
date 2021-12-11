@@ -27,11 +27,6 @@ class login
 	while ($row2=$result2->fetch(PDO::FETCH_ASSOC))
 	{
 		$uusername=stripslashes($row2["NUMERO_DOC"]);
-		$ppassword=stripslashes($row2["CONTRASEÑA"]);
-		$tdoc=stripslashes($row2["TD_USUARIO"]);
-		$us_correo=stripslashes($row2["CORREO_USUARIO"]);
-		$nombre=stripslashes($row2["PRIMER_NOMBRE"]);
-		$apellido=stripslashes($row2["PRIMER_APELLIDO"]);
 		$cont=$cont+1;
 	}
 
@@ -43,13 +38,8 @@ class login
 	if ($cont!=0)
 	{
 		$_SESSION["NUMERO_DOC"]=$uusername;
-		$_SESSION["DESC_ROL"]=$rol;
-		$_SESSION["PRIMER_NOMBRE"]=$nombre;
-		$_SESSION["PRIMER_APELLIDO"]=$apellido;
-		$_SESSION["CORREO_USUARIO"]=$us_correo;
 
 		$sql1= "SELECT ROL_ID_ROL FROM rol_usuario 
-                JOIN usuario ON ID_USUARIO = ROL_ID_ROL
                 WHERE USUARIO_NUMERO_DOC='$uusername'";
 		$result1 = $db->query($sql1);
 
@@ -77,8 +67,6 @@ class login
 $nuevo=new login();
 $nuevo->Login_user($_POST['user'],$_POST['pass'],$_POST['tdoc']);
 ?>
-
-
 
 </body>
 </html>

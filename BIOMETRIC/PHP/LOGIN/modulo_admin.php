@@ -40,10 +40,19 @@ if ($active_session_admin!='1')
 					<a href="../formularios/formu_ciudad.php"><span class="las la-map"></span><span>Registro Ciudad</span></a>
 				</li>
 				<li>
-					<a href="../formularios/formu_vehiculo.php"><span class="las la-car"></span><span>registro Vehiculo</span></a>
+					<a href="../formularios/formu_vehiculo.php"><span class="las la-car"></span><span>Registro Vehiculo</span></a>
 				</li>
 				<li>
-					<a href="../formularios/formu_eps.php"><span class="las la-hospital"></span><span>registro EPS</span></a>
+					<a href="../formularios/formu_tipo_vehiculo.php"><span class="las la-car"></span><span>Registro Tipo Vehiculo</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_modelo_veh.php"><span class="las la-car"></span><span>Registro Modelo Vehiculo</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_eps.php"><span class="las la-hospital"></span><span>Registro EPS</span></a>
+				</li>
+				<li>
+					<a href="../formularios/formu_contacto_e.php"><span class="las la-hospital"></span><span>Registro Contacto Emergencia</span></a>
 				</li>
 			</ul>
 
@@ -71,9 +80,14 @@ if ($active_session_admin!='1')
 			</div>
 		</header>
 		<main>
-			<div class="cards">
-				<div class="card-single">
-					<h1>BIENVENIDO</h1>
+			<div class="manual">
+				<div>
+					<h1 class="bien">BIENVENIDO</h1>
+				</div>
+				<div>
+					<h3>Descarga de manuales</h3><br>
+					<a href="../Manual_tecnico.pdf">Manual tecnico</a>
+					<a href="../Manual_de_Operacion.pdf">Manual de Operaciones</a>
 				</div>
 			</div>
 		</main>
