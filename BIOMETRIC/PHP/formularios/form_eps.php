@@ -1,3 +1,44 @@
+<?php
+require_once '../crud_bio/model_eps.php';
+require_once '../conexion.php';
+    $db = conexion::conectar();
+    ?>
+<?php
+// INICIO DE VALIDACION Y SELECCION DE CASOS A REALIZAR INSERT - UPDATE - DELETE - SELECT
+if(isset($_REQUEST['action']))
+{   switch ($_REQUEST['action']) 
+    {   
+
+// CASO PARA METODO ACTUALIZAR
+        case 'actualizar':
+        $update=new Eps();
+        $update->Actualizar_eps($_POST["old_idd"], $_POST["new_idd"], $_POST["nnom_eps"],$_POST["eestado"]);
+
+            break;
+
+// CASO PARA METODO REGISTRAR       
+        case 'registrar':
+        $insert=new Eps();
+        $insert->Ingresar_eps($_POST["id_eps"],$_POST["nom_eps"], $_POST["estado"]);
+
+         break;
+
+// CASO PARA METODO ELIMINAR
+         case 'eliminar':
+        $delete=new Eps();
+        $delete->Eliminar_eps($_GET["ID_EPS"]);
+
+           break;
+
+// CASO PARA METODO EDITAR
+         case'editar':
+        $capt = $_GET["ID_EPS"];
+         break;
+     }
+}
+// FIN SECCION DE CASOS
+
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -8,7 +49,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style_forms.css">
 
-    <title>Inicio login</title>
+    <title>Registro Eps</title>
 </head>
 <body>
     <header class="mt-0 pt-0">
@@ -70,28 +111,91 @@
         </div>
 <div><br><br><br>
 
-  <?php
-    require_once '../conexion.php';
-    $db = conexion::conectar();
+<a href="?action=ver&m=1">Registro Eps</a><br><br>
+
+<!-- Validacion para mostrar formulario de nuevo registro -->
+	<?php if( !empty($_GET['m']) and !empty($_GET['action'])  )
+
+{?>
+
+<div class="container-fluid pt-5">
+    <h1 style="color: white">Registro eps </h1>
+                <form class="form" method="post" action="#">
+                   <input type="number" name="id_eps" placeholder="Ingrese numero de id" style="display: none">
+        	   	   <input type="text" name="nom_eps" placeholder="eps">
+        	   	   <label>Estado: </label>
+                   Active <input type="radio" name="estado" value="1" checked>
+                   Inactive <input type="radio" name="estado" value="0">
+        	   	   <input type="submit" value="Registrar" onclick="this.form.action = '?action=registrar';"/>
+        	   		
+        	   		
+        	   	</form>
+</div>
+<?php } ?> <!-- FIN - Formulario nuevo registro -->
+
+
+<!-- Validacion para mostrar formulario de Actualizar registro -->
+<?php if( !empty($_GET['ID_EPS']) && !empty($_GET['action']) ){ ?>
+
+<div>	
+<form class="form" action="#" method="post">
+
+<?php $sql1= "SELECT * FROM `eps`
+				WHERE ID_EPS = '$capt'";
+$query = $db->query($sql1);?>
+<?php  while ($row=$query->fetch(PDO::FETCH_ASSOC))
+{
     ?>
-<footer class="container-fluid pt-5">
-    <h1 style="color: white">Recuperacion de Contraseña </h1>
-    <form class="form" method="post" action="recuperar.php">
-        <select name="tdoc">
-                <?php
-                    foreach ($db->query('SELECT ID_TIPO_DOC, DES_TD FROM tipo_documento') as $row)
-                    {
-                        echo '<option value="'.$row['ID_TIPO_DOC'].'">'.$row['DES_TD'].'</option>';
-                    }
-                ?>
-        </select><br>
-        <input type="number" placeholder="Ingrese su numero de documento" name="user" required>
-        <input type="email" placeholder="ingrese su email" name="email">
-        <input class="submit" type="submit" name="">
+		<h2>ACTUALIZAR DATOS</h2>
+			<input type="text" name="old_idd" value="<?php echo $row["ID_EPS"]; ?>" style='display: none'>
+			<input type="text" name="new_idd" value="<?php echo $row["ID_EPS"]; ?>" placeholder="Numero de ID" required>
+			<input type="text" name="nnom_eps" value="<?php echo $row["DES_EPS"]; ?>" placeholder="Eps">
+            <label>Estado: </label>
+              Active<input type="radio" name="estado" value="1"<?php echo $row['ESTADO_EPS'] === '1' ? 'checked' : ''?>  >
+              Inactive<input type="radio" name="estado" value="0"<?php echo $row['ESTADO_EPS'] === '0' ? 'checked' : ''?>  >
+			<p><input class="submit-button" type="submit" value= "Actualizar" onclick= "this.form.action = '?action=actualizar';"/>
 
-    </form><br><br><br><br>
-</footer>
 
+</form>
+</div>
+<?php  }} // Fin Validacion para mostrar formulario de Actualizar registro
+$sql1= "SELECT * FROM eps";
+$query = $db->query($sql1);
+
+if($query->rowCount()>0):?>
+<br><h1 style="color: white">Consulta de Eps</h1><br>
+<table class="blueTable">
+	<thead>
+		<tr>
+			<th class="th">Id Eps</th>
+			<th>Eps</th>
+			<th>Estado</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
+		</tr>
+	</thead>
+
+
+<?php while ($row=$query->fetch(PDO::FETCH_ASSOC)): ?>
+<tr class="tr">
+	<td class="td"><?php echo $row['ID_EPS']; ?></td>
+	<td class="td"><?php echo $row['DES_EPS']; ?></td>
+	<td class="td"><?php echo $row['ESTADO_EPS']; ?></td>
+<td class="td">
+	<a href="?action=editar&ID_EPS=<?php echo $row["ID_EPS"];?>">Actualizar</a>
+</td> 
+	<td class="td"> 
+	 <a href="?action=eliminar&ID_EPS=<?php echo $row["ID_EPS"];?>" onclick="return confirm('¿Esta seguro de eliminar esta Eps?')">Eliminar</a>
+</td>
+
+</tr>
+<?php endwhile;?>
+
+</table>
+
+<?php else:?>
+	<h4 class="alert alert-danger">Señor usuario no hay registros encontrados</h4>
+<?php endif;?>
     <footer class="container-fluid pt-5">
         <div class="container">
             <nav class="nav nav-fill mx-auto mt-5">
@@ -126,7 +230,5 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/jquery.yu2fvl.js"></script>
     <script src="assets/js/main.js"></script>
-
 </body>
-
 </html>

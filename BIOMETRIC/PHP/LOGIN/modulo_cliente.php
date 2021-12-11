@@ -7,8 +7,6 @@ if ($active_session_cliente!='1')
 {
 	header('location: login.php');
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +27,6 @@ if ($active_session_cliente!='1')
             𝑩𝒊𝒐𝒎𝒆𝒕𝒓𝒊𝒄-𝒔𝒚𝒔𝒕𝒆𝒎~𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐 𝒄𝒍𝒊𝒆𝒏𝒕𝒆
             </a>
             <span class="glyphicon glyphicon-align-left"></span>
-            <STRONG><?php echo $_SESSION["NUMERO_DOC"];?></STRONG>
             <STRONG><?php echo "correo" , $_SESSION["CORREO_USUARIO"];?></STRONG>
             <div>
             	<a href="salircliente.php" class="btn btn-success ml-2">CIERRE SESSION</a>

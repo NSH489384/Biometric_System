@@ -19,7 +19,8 @@ class login
 
 	$cont=0;
 
-	$sql2="SELECT * FROM usuario 
+	$sql2="SELECT NUMERO_DOC, CONTRASEÑA, TD_USUARIO, PRIMER_NOMBRE, PRIMER_APELLIDO, CORREO_USUARIO FROM usuario
+	JOIN persona ON NUMERO_DOC = ID_PERSONA
     WHERE (NUMERO_DOC = '$user') and CONTRASEÑA = '$pass' and TD_USUARIO = '$tdoc'";
 	$result2 = $db->query($sql2);
 
@@ -29,8 +30,8 @@ class login
 		$ppassword=stripslashes($row2["CONTRASEÑA"]);
 		$tdoc=stripslashes($row2["TD_USUARIO"]);
 		$us_correo=stripslashes($row2["CORREO_USUARIO"]);
-		//$nombre=stripslashes($row2["PRIMER_NOMBRE"]);
-		//$apellido=stripslashes($row2["PRIMER_APELLIDO"]);
+		$nombre=stripslashes($row2["PRIMER_NOMBRE"]);
+		$apellido=stripslashes($row2["PRIMER_APELLIDO"]);
 		$cont=$cont+1;
 	}
 
@@ -43,6 +44,9 @@ class login
 	{
 		$_SESSION["NUMERO_DOC"]=$uusername;
 		$_SESSION["DESC_ROL"]=$rol;
+		$_SESSION["PRIMER_NOMBRE"]=$nombre;
+		$_SESSION["PRIMER_APELLIDO"]=$apellido;
+		$_SESSION["CORREO_USUARIO"]=$us_correo;
 
 		$sql1= "SELECT ROL_ID_ROL FROM rol_usuario 
                 JOIN usuario ON ID_USUARIO = ROL_ID_ROL

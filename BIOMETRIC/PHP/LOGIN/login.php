@@ -1,4 +1,7 @@
-
+  <?php
+    require_once '../conexion.php';
+    $db = conexion::conectar();
+    ?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -7,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style_form.css">
+    <link rel="stylesheet" href="../assets/css/style_forms.css">
 
 	<title>Inicio login</title>
 </head>
@@ -75,11 +78,13 @@
 	<form class="form" method="post" action="validacion.php">
         <label >Tipo documento</label><br>
         <select name="tdoc">
-            <option value="CC">cedula ciudadania</option> 
-            <option value="TI" >Tarjeta de identidad</option>
-            <option value="CE">Cedula de extrangeria</option>
-            <option value="PA">Pasaporte</option>
-        </select><br>		
+                <?php
+                    foreach ($db->query('SELECT ID_TIPO_DOC, DES_TD FROM tipo_documento') as $row)
+                    {
+                        echo '<option value="'.$row['ID_TIPO_DOC'].'">'.$row['DES_TD'].'</option>';
+                    }
+                ?>
+            </select><br>		
         <label >NUMERO DOCUMENTO</label>
 		<input type="number" placeholder="Ingrese su numero de documento" name="user" required>
 		<label >Contraseña</label><br>

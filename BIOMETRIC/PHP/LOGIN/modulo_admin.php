@@ -20,24 +20,31 @@ if ($active_session_admin!='1')
 	<title>modulo_admin</title>
 </head>
 <body>
+	<footer class="container-fluid pt-5">
 	<div class="container-fluid pt-3">
         <nav class="navbar navbar-dark bg-dark">
         	<a class="navbar-brand" href="#" >
             <img src="../assets/images/logo12.jpg" width="50" height="50" class="d-inline-block align-top" alt="">   
-            𝑩𝒊𝒐𝒎𝒆𝒕𝒓𝒊𝒄-𝒔𝒚𝒔𝒕𝒆𝒎~𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐 𝒂𝒅𝒎𝒊𝒏𝒊𝒔𝒕𝒓𝒂𝒅𝒐𝒓
+            𝑩𝒊𝒐𝒎𝒆𝒕𝒓𝒊𝒄-𝒔𝒚𝒔𝒕𝒆𝒎~𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐 𝒂𝒅𝒎𝒊𝒏𝒊𝒔𝒕𝒓𝒂𝒅𝒐𝒓 
+            <STRONG><?php echo "Nombres: " , $_SESSION["PRIMER_NOMBRE"];?></STRONG> 
+            <STRONG><?php echo $_SESSION["PRIMER_APELLIDO"];?></STRONG>
+            <STRONG><?php echo "correo: " , $_SESSION["CORREO_USUARIO"];?></STRONG>
             </a>
-            <H1><?php echo $_SESSION["DESC_ROL"];?></H1>
-            <H1><?php echo $_SESSION["NUMERO_DOC"];?></H1>
-
             <span class="glyphicon glyphicon-align-left"></span>
             <div>
             	<a href="saliradmin.php" class="btn btn-success ml-2">CIERRE SESSION</a>
             </div>
         </nav>
     </div>
-<footer class="container-fluid pt-5">
         <div class="container">
-        	   <br><br><br><br><br> <br><br><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro persona</h4></a><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro cliente</h4></a><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_ciudad.php"><h4>Registro usuario</h4></a><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro vehiculo</h4></a><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_ciudad.php"><h4>Registro ciudad</h4></a><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_pers.php"><h4>Registro biometrico</h4></a><br><br>
+        	<a class="btn btn-primary btn-xs" href="../formularios/form_eps.php"><h4>Registro EPS</h4></a>
+        	   </div>
             <h2 class="logo text-center">BIOMETRIC-SYSTEM</h2>
             <nav class="nav nav-fill mx-auto mt-5">
                 <li class="nav-item">
